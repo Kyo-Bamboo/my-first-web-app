@@ -1,12 +1,407 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Cafe Aroma & Solace | 本格焙煎珈琲</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 基本設定 (Base Styles) --- */
+        :root {
+            --bg-color: #F9F8F4; /* 生成り色 */
+            --text-color: #333333; /* ダークグレー */
+            --accent-color: #8D6E63; /* コーヒーブラウン */
+            --white: #FFFFFF;
+            --spacing-section: 120px; /* セクション間のゆとり */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- ヘッダー (Header) --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background-color: rgba(249, 248, 244, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Noto Serif JP', serif;
+            letter-spacing: 0.1em;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- ヒーローセクション (Hero) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-bg img {
+            height: 100%;
+            filter: brightness(0.8); /* 画像を少し暗く */
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* --- 共通セクションスタイル --- */
+        section {
+            padding: var(--spacing-section) 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* --- Concept Section --- */
+        .concept {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .concept-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .concept-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .concept-image img {
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* --- Menu Section --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+        }
+
+        .menu-item {
+            text-align: center;
+        }
+
+        .menu-img {
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .menu-img img {
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover .menu-img img {
+            transform: scale(1.05);
+        }
+
+        .menu-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .menu-price {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* --- Info / Access Section --- */
+        .access-container {
+            background-color: var(--white);
+            padding: 80px;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .info-list dl {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .info-list dt {
+            width: 100px;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .info-list dd {
+            flex: 1;
+        }
+
+        /* --- フッター (Footer) --- */
+        footer {
+            background-color: #222;
+            color: #999;
+            padding: 60px 5%;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        footer .logo {
+            color: var(--white);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* --- レスポンシブ対応 (Mobile) --- */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-section: 80px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            nav {
+                display: none; /* 簡易的に非表示（本来はハンバーガーメニュー推奨） */
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .concept {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .access-container {
+                grid-template-columns: 1fr;
+                padding: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My GitHub Pages Site</h1>
-    <p>This is my first GitHub Pages deployment!</p>
+
+    <header>
+        <div class="logo">AROMA & SOLACE</div>
+        <nav>
+            <ul>
+                <li><a href="#concept">Concept</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#access">Access</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2071&auto=format&fit=crop" alt="Cafe Interior">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">一杯の珈琲で、<br>時を止める。</h1>
+            <p class="hero-subtitle">Authentic Coffee & Quiet Moments</p>
+        </div>
+    </div>
+
+    <section id="concept">
+        <div class="concept">
+            <div class="concept-image">
+                <img src="https://images.unsplash.com/photo-1447933601403-0c60889eeaf0?q=80&w=2070&auto=format&fit=crop" alt="Hand Drip Coffee">
+            </div>
+            <div class="concept-text">
+                <h3>日常の喧騒を離れ、<br>香りに包まれる場所。</h3>
+                <p>
+                    厳選された豆を店内で丁寧に焙煎し、注文を受けてから一杯ずつハンドドリップで抽出します。
+                    私たちのこだわりは、ただ美味しい珈琲を提供することだけではありません。
+                </p>
+                <p>
+                    木の温かみを感じる空間、静かに流れる音楽、そして深いアロマ。
+                    ここでは時計の針を少しだけ遅らせて、自分だけの時間をお楽しみください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="section-header">
+            <h2 class="section-title">Our Menu</h2>
+            <p class="section-desc">季節のブレンドと手作りの甘味</p>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1974&auto=format&fit=crop" alt="Special Blend">
+                </div>
+                <div class="menu-name">本日の自家焙煎ブレンド</div>
+                <div class="menu-price">¥650</div>
+                <p>深みのあるコクと、後味に広がるフルーティーな香り。</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=2035&auto=format&fit=crop" alt="Cafe Latte">
+                </div>
+                <div class="menu-name">濃厚カフェラテ</div>
+                <div class="menu-price">¥700</div>
+                <p>エスプレッソの苦味と、きめ細やかなミルクの甘み。</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1563729768849-43461446886d?q=80&w=2070&auto=format&fit=crop" alt="Cheesecake">
+                </div>
+                <div class="menu-name">自家製バスクチーズケーキ</div>
+                <div class="menu-price">¥600</div>
+                <p>とろけるような口溶けと、焦がしの香ばしさ。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="access">
+        <div class="section-header">
+            <h2 class="section-title">Access & Info</h2>
+            <p class="section-desc">店舗情報</p>
+        </div>
+
+        <div class="access-container">
+            <div class="info-list">
+                <dl>
+                    <dt>ADDRESS</dt>
+                    <dd>〒150-0000<br>東京都渋谷区神南 1-23-4<br>グリーンビル 1F</dd>
+                </dl>
+                <dl>
+                    <dt>HOURS</dt>
+                    <dd>平日: 10:00 - 20:00<br>土日祝: 09:00 - 21:00</dd>
+                </dl>
+                <dl>
+                    <dt>CLOSED</dt>
+                    <dd>毎週火曜日</dd>
+                </dl>
+                <dl>
+                    <dt>TEL</dt>
+                    <dd>03-1234-5678</dd>
+                </dl>
+            </div>
+            <div class="map-area">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" alt="Map Placeholder" style="height: 100%; filter: grayscale(100%);">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">AROMA & SOLACE</div>
+        <p>&copy; 2024 Aroma & Solace Cafe. All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>
